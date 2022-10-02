@@ -5,6 +5,8 @@ public class Main {
         
         Fraction x = new Fraction(3,4);
 
-        x.toString();
-    }
+        String s = x.toString();
+        
+        System.out.println(s);
+    }   
 }
