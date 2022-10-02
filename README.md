@@ -16,27 +16,45 @@ Dans cet exercice, vous créerez une classe `Fraction` représentant un nombre r
 
 1. Sur la forge, créez le dépôt (_repository_) `SimpleFraction`;
 En terme de *commits*, quelle différence constatez-vous entre cocher une (ou plusieurs) des cases *Initialize this repository with* et n'en cocher aucune ?
-    > Répondre ici
+    > On peut cocher des cases pour ajouter un fichier README, un .gitignore ou un fichier LICENSE dans notre repository. Dans le cas où l'on ne coche rien, le repo créé est vide.
 
     *Pour la suite, ne cochez aucune de ces cases*.
 1. Localement, configurez `git` avec votre nom (`user.name`) et votre email (`user.email`) (cf. [Personnalisation de Git](https://git-scm.com/book/fr/v2/Personnalisation-de-Git-Configuration-de-Git));
     ```bash
-    # Répondre ici
+    $ git config --global user.name "uvsq21916945"
+    $ git config --global user.email anne.duveau@ens.uvsq.fr
     ```
 1. Initialisez le dépôt `git` local pour le projet (cf. [Démarrer un dépôt Git](https://git-scm.com/book/fr/v2/Les-bases-de-Git-D%C3%A9marrer-un-d%C3%A9p%C3%B4t-Git));
     ```bash
-    # Répondre ici
+    # avec SSH: (la fonction avec http ne fonctionne pas?)
+    # on clone le README initial 
+    git clone @adress_readme
+    # on clone ensuite le repo créé dans mon git
+    git clone git@github.com:uvsq21916945/SimpleFraction_1.git
+    # je peux faire un ls -rtla dans le fichier cloné pour voir si on a bien un ".git"
+    # on peut alors déplacer le fichier que l'on veut modifier du 1er clonage dans le 2e où l'on va le modifier
     ```
 1. Dans votre IDE, créez la classe `Fraction` (vide pour le moment) et la classe `Main` (avec un simple affichage) dans le projet (cf. [Méthode `main`](https://docs.oracle.com/javase/specs/jls/se19/html/jls-12.html#jls-12.1.4));
 Vérifiez que le projet compile et s'exécute dans l'IDE;
 Validez les changements (cf. [Enregistrer des modifications dans le dépôt](https://git-scm.com/book/fr/v2/Les-bases-de-Git-Enregistrer-des-modifications-dans-le-d%C3%A9p%C3%B4t));
     ```bash
-    # Commandes pour valider les changements
+    # pour vérifier que le projet compile et exécuter
+    javac Fraction.java Main.java
+    java Main
+
+    # validation des chgts
+    git status
+    git add *.java
+    git commit -m "ajout de fichiers.java"
+    git push
     ```
 1. Ajoutez la méthode `toString` à la classe `Fraction` (cf. [`Object.toString`](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html#toString())) qui retournera la chaîne `"Je suis une fraction."` et modifiez la classe `Main` en conséquence;
 Validez les changements;
     ```Java
-    // Code pour tester toString
+    public String toString()
+    {
+        return ("Je suis une Fraction");
+    }
     ```
 1. Publiez vos modifications sur le dépôt distant (cf. [Travailler avec des dépôts distants](https://git-scm.com/book/fr/v2/Les-bases-de-Git-Travailler-avec-des-d%C3%A9p%C3%B4ts-distants));
 Vous utiliserez le protocole `https` pour cela;
