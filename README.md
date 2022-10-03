@@ -55,34 +55,68 @@ Validez les changements;
     {
         return ("Je suis une Fraction");
     }
+
+    // dans la classe Main
+
+    String s = x.toString();
+    System.out.println(s);
     ```
 1. Publiez vos modifications sur le dépôt distant (cf. [Travailler avec des dépôts distants](https://git-scm.com/book/fr/v2/Les-bases-de-Git-Travailler-avec-des-d%C3%A9p%C3%B4ts-distants));
 Vous utiliserez le protocole `https` pour cela;
 Vérifiez avec le navigateur;
     ```bash
-    # Commandes pour publier les modifications
+    git add 
+    git commit -m "commentaires"
+    git push
     ```
 1. Sur la forge, ajoutez un fichier de documentation `README.md`.
 Quelle syntaxe est utilisée pour ce fichier ?
-    > Répondre ici
+    > Ce fichier utilise la synthaxe Markdown.
 1. Récupérez localement les modifications effectuées sur la forge.
     ```bash
-    # Répondre ici
+    git pull
     ```
 1. Ajoutez les répertoires et fichiers issus de la compilation aux fichiers ignorés par `git` (cf. [`.gitignore` pour Java](https://github.com/github/gitignore/blob/main/Java.gitignore));
     ```bash
-    # Copier ici le contenu de `.gitignore`
+    # Compiled class file
+    *.class
+
+    # Log file
+    *.log
+
+    # BlueJ files
+    *.ctxt
+
+    # Mobile Tools for Java (J2ME)
+    .mtj.tmp/
+
+    # Package Files #
+    *.jar
+    *.war
+    *.nar
+    *.ear
+    *.zip
+    *.tar.gz
+    *.rar
+
+    # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+    hs_err_pid*
+    replay_pid*
     ```
 1. Retirez les fichiers de configuration de l'IDE du projet;
     ```bash
-    # Répondre ici
+    # Il n'y a pas de fichiers de configuration de l'IDE pour l'éditeur VSC...
     ```
     Ajoutez-les aux fichiers ignorés par `git`.
     ```bash
-    # Copier ici les modifications de `.gitignore`
+    # je ne peux pas ici..
     ```
 1. Configurez l'accès par clé publique/clé privée à la forge (cf. [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)).
-    > Expliquez la procédure de façon synthétique
+    >  Procédure de la configuration de la clé à la forge:
+    - Avant de générer une clé, on vérifie s'il n'en existe pas déjà une dans notre machine locale.
+    - Dans le cas où il n'en existe aucune, générer la clé sur le terminal.
+    - ajouter la clé SSH sur le github dans les paramètres
+    SSH ( = Secure Shell)
 
 ## Partie II (à faire durant le TD) : compléter la classe `Fraction`
 Dans cet partie, vous compléterez les classes `Fraction` et `Main`.
@@ -94,38 +128,53 @@ Vous respecterez les consignes ci-dessous :
 
 1. Ajoutez les attributs représentants le numérateur et le dénominateur (nombres entiers).
     ```Java
-    // Déclaration des attributs
+    private int numerateur;
+    private int denominateur;
     ```
 1. Ajoutez les constructeurs (cf. [Constructor Declarations](https://docs.oracle.com/javase/specs/jls/se19/html/jls-8.html#jls-8.8)) suivants :
     * initialisation avec un numérateur et un dénominateur,
     * initialisation avec juste le numérateur (dénominateur égal à _1_),
     * initialisation sans argument (numérateur égal _0_ et dénominateur égal à _1_),
     ```Java
-    // Assertions pour tester les constructeurs (avec toString)
+    assert "3/4".equals(x.toString()): assertion fausse;
     ```
 1. Ajoutez les fractions constantes ZERO (0, 1) et UN (1, 1) (cf. [Constants in Java](https://www.baeldung.com/java-constants-good-practices)),
     ```Java
-    // Déclaration des constantes
+    public static final Fraction ONE = new Fraction(1);
+    public static final Fraction ZERO = new Fraction();
     ```
 1. Ajoutez une méthode de consultation du numérateur et du dénominateur (par convention, en Java, une méthode retournant la valeur de l'attribut `anAttribute` est nommée `getAnAttribute`),
     ```Java
-    // Définition des getters
+    public int getNumerateur()
+    {
+        return numerateur;
+    }
+
+    public int getDenominateur()
+    {
+        return denominateur;
+    }
     ```
 1. Ajoutez une méthode de consultation de la valeur sous la forme d'un nombre en virgule flottante (méthode `doubleValue()`) (cf. [`java.lang.Number`](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Number.html)),
    ```Java
-    // Assertions pour tester la conversion
+    public double doubleValue()
+    {
+        return (double)this.numerateur/(double)this.denominateur;
+    }
     ```
 1. Ajoutez une méthode permettant l'addition de deux fractions (la méthode `add` prend en paramètre *une* fraction et *retourne* la somme de la fraction courante et du paramètre),
    ```Java
-    // Assertions pour tester l'addition
+    Fraction z = new Fraction();
+    z = x.add(y);
+    assert z.toString().equals("1/1"): "la somme n'a pas fonctionné";
     ```
 1. Ajoutez le test d'égalité entre fractions (deux fractions sont égales si elles représentent la même fraction réduite) (cf. [`java.lang.Object.equals`](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object))),
    ```Java
-    // Assertions pour tester l'égalité
+    assert f1.reduction(f1).toString().equals(f2.reduction(f2).toString()): "les 2 fractions ne sont pas égales";
     ```
 1. Ajoutez la comparaison de fractions selon l'ordre naturel (cf. [`java.lang.Comparable`](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Comparable.html)).
    ```Java
-    // Assertions pour tester la comparaison
+    assert f1.compareTo(f2) == 0 : "les 2 fractions ne sont pas égales";
     ```
 1. Faites hériter votre classe `Fraction` de la classe [`java.lang.Number`](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Number.html) et complétez les méthodes
    ```Java
