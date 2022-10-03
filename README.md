@@ -191,46 +191,61 @@ Vous pouvez répondre en utilisant le shell de votre choix (*bash*, *Powershell*
 Pour répondre à ces questions, vous devez effectuer les recherches documentaires adéquates (livre, web, …).
 
 1. Quel OS et quel shell de commande utilisez-vous ?
-    > Répondre ici
+    > J'utilise Linux, et j'utilise le bash.
 1. Quelle commande permet d'obtenir de l'aide ?
 Donnez un exemple.
     ```bash
-    # Répondre ici
+    $ help nom 
+    # permet d'en savoir plus sur la fonction nom
+    
+    $ man mv
+    # permet de comprendre comment fonctionne la commande mv 
     ```
 1. Donnez la ou les commandes shell permettant de
     1. afficher les fichiers d'un répertoire triés par taille (taille affichée lisiblement)
         ```bash
-        # Répondre ici
+        $ ls -lS /path/to/folder
+        # -S va trier les fichiers par taille
+        # sort by size
         ```
     1. compter le nombre de ligne d'un fichier
         ```bash
-        # Répondre ici
+        $ wc -l < text.txt
+        # le paramètre -c de la commande grep renvoie le nombre de lignes.
         ```
     1. afficher les lignes du fichier `Main.java` contenant la chaîne `uneVariable`
         ```bash
-        # Répondre ici
+        $ grep "uneVariable" -Rn mon_repertoire/
+        # -n c'est pour le numéro de la ligne
+        # -R: lis tous les fichiers dans chaque directory, de manière récursive.
         ```
     1. afficher récursivement les fichiers `.java` contenant la chaîne `uneVariable`
         ```bash
-        # Répondre ici
+        $ find /chemin/toto -type f -name *.java ...?
         ```
     1. trouver les fichiers (pas les répertoires) nommés `README.md` dans une arborescence de répertoires
         ```bash
-        # Répondre ici
+        $ find /chemin/toto -type f -name "README.md"
         ```
     1. afficher les différences entre deux fichiers textes
         ```bash
-        # Répondre ici
+        diff text1 text2
+        # compare les fichiers text1 et text2 ligne par ligne
+
+        cmp text1 text2
+        # compare les fichiers caractère par caractère
         ```
 1. Expliquez en une ou deux phrases le rôle de ces commandes et dans quel contexte elles peuvent être utiles pour un développeur.
     * `ssh`
-        > Répondre ici
+        > Commande (protocole réseau) qui permet des connexions distantes sécurisées entre deux systèmes
+        Permet par exemple de gérer les machines, copier ou déplacer des fichiers entre les systèmes.
+        On peut par exemple se connecter à un serveur distant grâce à ça.
     * `screen`/`tmux`
-        > Répondre ici
+        > permet d'ouvrir plusieurs terminaux dans une même console et de passer de l'un à l'autre et de les récupérer plus tard.
     * `curl`/[HTTPie](https://httpie.org/)
-        > Répondre ici
+        > Curl (ou Client URL) est conçue pour fonctionner comme un moyen de vérifier la connectivité aux URL Pour transférer des données d'un serveur ou sur un serveur.
     * [jq](https://stedolan.github.io/jq/)
-        > Répondre ici
+        > jq est comme la commande "sed", "awk", et "grep" et peut-être utilisé pour fragmenter, filtrer, transformer les données
 
 ### Découverte de votre *IDE*
 Dans cet exercice, vous expliquerez en quelques phrases comment vous réalisez les actions ci-dessous dans votre IDE.
@@ -238,28 +253,34 @@ Vous pouvez choisir l'IDE/éditeur de texte de votre choix.
 Pour réaliser cette exercice, vous devez bien évidemment vous reporter à la documentations de l'IDE ([IntelliJ IDEA](https://www.jetbrains.com/help/idea/discover-intellij-idea.html#developer-tools), [Visual Studio Code](https://code.visualstudio.com/docs), [Eclipse](https://help.eclipse.org/2020-09/index.jsp), …).
 
 1. Quels IDE ou éditeurs de texte utilisez-vous pour le développement Java ?
-    > Répondre ici
+    > Pour le développement de Java, j'utilise Visual Studio Code.
 
     Pour la suite, ne considérez que l'un de vos choix.
 1. Comment vérifier/définir que l'encodage utilisé est *UTF-8* ?
-    > Répondre ici
+    > Aller dans > Paramètres > Éditeur de texte > Files: Encoding > Sélectionner UTF-8 (si pas déjà le cas)
 1. Comment choisir le JDK à utiliser dans un projet ?
-    > Répondre ici
+    > Il en existe plusieurs que l'on peut installer. Aller dans le déroulé à gauche et aller sur "Java Projects", cliquer droit et >configure classpath
 1. Comment préciser la version Java des sources dans un projet ?
-    > Répondre ici
+    > Aller dans Java Projects dans le déroulé à gauche et cliquer droit sur le projet souhaité et changer dans JDK Runtime et ensuite on peut modifier.
 1. Comment ajouter une bibliothèque externe dans un projet ?
-    > Répondre ici
+    > Aussi dans configure ClassPath puis dans referenced libraries. On pourra importer des librairies externes dans le projet.
 1. Comment reformater un fichier source Java ?
-    > Répondre ici
+    > **Je ne comprends pas la question**
 1. Comment trouver la déclaration d'une variable ou méthode ?
-    > Répondre ici
+    > Cliquer droit sur la méthode par exemple et sur "atteindre la définition". Pareil si c'est une variable. On atterira sur l'endroit de la déclaration de la variable ou méthode.
 1. Comment insérer un bloc de code prédéfini (*snippet*) ?
-    > Répondre ici
+    > Aller dans > Affichage > Palette de commandes
+    . Il est possible aussi d'installer des snippets avec des extensions.
 1. Comment renommer une classe dans l'ensemble du projet ?
-    > Répondre ici
+    > A gauche sélectionner la classe en question, puis cliquer droit et "Renommer". Changer le nom le changera dans tout le projet
+
 1. Comment exécuter le programme en lui passant un paramètre en ligne de commande ?
-    > Répondre ici
+    > Par exemple, si on ajoute le paramètre pour activer les assertions, on peut écrire en ligne de commandes:
+    ```bash
+    $ java -ea Main
+    ```
 1. Comment déboguer le programme en visualisant le contenu d'une ou plusieurs variables ?
-    > Répondre ici
+    > Il faut démarrer l'exécution en appuyant sur "Debug" et en mettant les breakpoints au bon endroit.
+    On verra s'afficher en temps réel la valeur des variables à gauche.
 1. Quels paramètres ou fonctionnalités vous semblent particulièrement importants/utiles pour le développement Java ?
-    > Répondre ici
+    > Savoir utiliser le debugger, savoir gérer les librairies, etc..
